@@ -9,7 +9,7 @@ provider:
     DATABASE_URL_SSM_PARAM: ${env:DATABASE_URL_SSM_PARAM,"fall back value"}
   iam:
     role:
-      name: serverless-my-ssm-lambda-role
+      name: serverless-my-ssm-lambda-role-${env:STAGE,'prod'}
       statements:
         - Effect: "Allow"
           Resource: "*"
