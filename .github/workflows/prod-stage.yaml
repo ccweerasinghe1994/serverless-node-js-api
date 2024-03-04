@@ -22,4 +22,6 @@ jobs:
           cache: 'npm'
       - name: Install dependencies
         run: npm install
+      - name: Deploy to AWS
+        run: npm run deploy
       
