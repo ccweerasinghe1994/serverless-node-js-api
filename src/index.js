@@ -1,10 +1,10 @@
 const serverless = require("serverless-http");
 const express = require("express");
-const {getDbClient} = require("./db/clients");
-const {getLeads, newLead, getLeadById} = require("./db/crud");
-const {emailValidator} = require("./db/validator");
+const { getDbClient } = require("./db/clients");
+const { getLeads, newLead, getLeadById } = require("./db/crud");
+const { emailValidator } = require("./db/validator");
 
-
+console.log("Starting serverless function");
 const app = express();
 app.use(express.json());
 
@@ -32,15 +32,15 @@ app.get("/leads", async (req, res, next) => {
 });
 
 app.get("/leads/:id", async (req, res, next) => {
-    const {id} = req.params;
+    const { id } = req.params;
     const data = await getLeadById(id);
     return res.status(200).json({
         data
     });
 });
 app.post("/leads", async (req, res, next) => {
-    const {email} = req.body;
-    const {data, hasError, message} = emailValidator({email});
+    const { email } = req.body;
+    const { data, hasError, message } = emailValidator({ email });
     if (hasError) {
         return res.status(400).json({
             error: message,
