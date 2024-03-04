@@ -23,5 +23,5 @@ jobs:
       - name: Install dependencies
         run: npm install
       - name: Deploy to AWS
-        run: npm run remove
+        run: npm run deploy
       
