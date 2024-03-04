@@ -1,0 +1,8 @@
+node_modules
+.serverless
+.env.dev
+.env
+.env.prod
+reference/policy.json
+credential.sh
+.build
