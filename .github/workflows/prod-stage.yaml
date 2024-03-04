@@ -15,8 +15,6 @@ jobs:
       GH_TOKEN: ${{ github.token }} # github cli -> gh
     steps:
       - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
       - name: Use Node.js
         uses: actions/setup-node@v4
         with:
@@ -26,22 +24,4 @@ jobs:
         run: npm install
       - name: Install neonctl and tsx
         run: npm install -g neonctl tsx
-      - name: Delete Previous Branch
-        run: neonctl branches delete dev --api-key ${{ env.API_KEY }}
-        continue-on-error: true
-      - name: Create Branched Database
-        run: neonctl branches create --name dev --api-key ${{ env.API_KEY }}
-      - name: Branch Connection String in Parameter Store
-        run: |
-          export DB_URL=$(neonctl connection-string --branch dev --api-key ${{ env.API_KEY }})
-          npx tsx src/cli/dbSecretUpdate.js dev $DB_URL
-      - name: Deploy dev stage
-        run: |
-          npm run deploy-dev-stage
-      - name: Dev Stage Pull Request
-        run: |
-          export PR_BRANCH=$(git branch --show-current)
-          export DEFAULT_BRANCH=$(git remote show origin | awk '/HEAD branch/ {print $NF}')
-          echo "$PR_BRANCH and $DEFAULT_BRANCH"
-          export DEV_STAGE_INFO=$(npm run info-dev-stage)
-          gh pr create --title "Automated PR from Dev Stage" --body "$DEV_STAGE_INFO" --base $DEFAULT_BRANCH --head $PR_BRANCH --repo $GITHUB_REPOSITORY
+      
