@@ -22,6 +22,4 @@ jobs:
           cache: 'npm'
       - name: Install dependencies
         run: npm install
-      - name: Install neonctl and tsx
-        run: npm install -g neonctl tsx
       
