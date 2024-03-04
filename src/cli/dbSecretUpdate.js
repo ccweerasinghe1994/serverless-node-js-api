@@ -11,6 +11,7 @@ if (arguments.length !== 2) {
 
 if (require.main === module) {
 
+
     const stage = arguments[0];
     const databaseUrl = arguments[1];
     console.log(`stage: ${stage}, databaseUrl: ${databaseUrl}`);
