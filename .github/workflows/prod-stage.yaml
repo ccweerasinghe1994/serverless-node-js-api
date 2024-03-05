@@ -2,6 +2,9 @@ name: Deploy Production App
 on:
   pull_request: 
     types: [closed]
+    branches: [main]
+  push:
+    branches: [main]
   workflow_dispatch:
 
 jobs:
@@ -11,7 +14,7 @@ jobs:
       AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
       AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
       API_KEY: ${{ secrets.NEON_API_KEY }}
-      STAGE: dev
+      STAGE: prod
       GH_TOKEN: ${{ github.token }} # github cli -> gh
     steps:
       - uses: actions/checkout@v4
