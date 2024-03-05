@@ -1,5 +1,5 @@
 // tsx src/cli/dbSecretUpdate.ts stage databaseUrl
-const {putDatabaseUrl} = require("../lib/secrets");
+const { putDatabaseUrl } = require("../lib/secrets");
 require('dotenv').config();
 
 const arguments = process.argv.slice(2);
@@ -15,6 +15,7 @@ if (require.main === module) {
     const stage = arguments[0];
     const databaseUrl = arguments[1];
     console.log(`stage: ${stage}, databaseUrl: ${databaseUrl}`);
+    console.log("✅✅✅process.env.AWS_REGION", process?.env?.AWS_REGION);
 
     putDatabaseUrl(stage, databaseUrl).then(value => {
         console.log(value);
