@@ -35,6 +35,7 @@ jobs:
       - name: Branch Connection String in Parameter Store
         run: |
           export DB_URL=$(neonctl connection-string --branch dev --api-key ${{ env.API_KEY }})
+          export AWS_REGION=us-east-1
           npx tsx src/cli/dbSecretUpdate.js dev $DB_URL
       - name: Deploy dev stage
         run: |
