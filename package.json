@@ -6,6 +6,7 @@
     "dev": "sls offline --stage dev",
     "deploy": "sls deploy --stage prod --region us-east-1 --verbose",
     "deploy-dev-stage": "sls deploy --stage dev --region us-east-1 --verbose",
+    "info-dev-stage": "sls info --stage dev --region us-east-1",
     "remove": "sls remove --stage prod --region us-east-1 --verbose",
     "info": "sls info --stage prod --region us-east-1 --verbose",
     "generate": "drizzle-kit generate:pg --config=drizzle.config.js",
